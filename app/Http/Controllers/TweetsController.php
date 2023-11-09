@@ -30,8 +30,11 @@ class TweetsController extends Controller
     public function store(Request $request)
     {
         $tweet = $request ->input('tweet');
-        //Validation laravel.basic.request
 
+        //Validation laravel.basic.request
+        $request->validate([
+            'tweet' => 'required|max:140|min:4|',
+        ]);
         //Almacenar / persistir
         //Conectarme a DB
         //Generar consulta
