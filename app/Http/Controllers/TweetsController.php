@@ -31,19 +31,20 @@ class TweetsController extends Controller
     {
         $tweet = $request ->input('tweet');
 
-        //Validation laravel.basic.request
-        $request->validate([
-            'tweet' => 'required|max:140|min:4|',
-        ]);
-        //Almacenar / persistir
-        //Conectarme a DB
-        //Generar consulta
-        //Ejecutar la consulta
-        //Validar que la consulta se haya realizado
-        //Desconectarme a DB
 
+        //Validation...
+        $validate = $request->validate([
+            'tweet' => ['required','max:30', 'min:4'],
+            'name' => ['required','max:15', 'min:3']
+        ]);
+
+
+        //Creamos el modelo...
         $new_tweet = new Tweet; //Creamos nuevo modelo de la clase Http/Models/Tweet
-        $new_tweet->message = $tweet; //Asigno la variable que contiene mi tweet al campo message de la DB
+        $new_tweet->message = $validate['tweet'];
+        $new_tweet->autor = $validate['name']; //Asigno la variable que contiene mi tweet al campo message de la DB
+
+        //... y lo guardamos
         $new_tweet->save(); //Ejecuto la funcion guardar tweet
 
         return redirect()->route('tweets');
