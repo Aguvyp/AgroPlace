@@ -29,8 +29,6 @@ class TweetsController extends Controller
     //Definimose el metodo para el post
     public function store(Request $request)
     {
-        $tweet = $request ->input('tweet');
-
 
         //Validation...
         $validate = $request->validate([
@@ -42,7 +40,7 @@ class TweetsController extends Controller
         //Creamos el modelo...
         $new_tweet = new Tweet; //Creamos nuevo modelo de la clase Http/Models/Tweet
         $new_tweet->message = $validate['tweet'];
-        $new_tweet->autor = $validate['name']; //Asigno la variable que contiene mi tweet al campo message de la DB
+        $new_tweet->autor = $validate['name'];
 
         //... y lo guardamos
         $new_tweet->save(); //Ejecuto la funcion guardar tweet
