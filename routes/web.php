@@ -28,7 +28,20 @@ Route::get('/tweets/create', [
     App\Http\Controllers\TweetsController::class, 'create'
 ])->name('tweets.create');
 
-
 Route::post('/tweets', [
     App\Http\Controllers\TweetsController::class, 'store'
 ])->name('tweets.store');
+
+//Edicion
+Route::get('/tweets/edit/{tweet}', [
+    App\Http\Controllers\TweetsController::class, 'edit'
+])->name('tweets.edit');
+
+
+Route::put('/tweets/{tweet}', [
+    App\Http\Controllers\TweetsController::class, 'update'
+])->name('tweets.update');
+
+
+
+

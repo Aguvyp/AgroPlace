@@ -13,7 +13,7 @@
 
     <body class="antialiased">
 
-        <h1>¿Qué está pensando?</h1>
+        <h1>Edita tu Tweet #{{ $tweet->id}}</h1>
 
         {{-- Esta vista nos muestra como crear un tweet --}}
 
@@ -22,25 +22,18 @@
         @endif
 
 
-        <form action="{{route('tweets.store')}}" method="POST">
+        <form action="{{ route('tweets.update', ['tweet' => $tweet->id]) }}" method="POST">
             @csrf {{-- Llamo al middleware VerifyCSRF para que me compare los tokens y no me rebote con pagina expirada --}}
+            @method('put'); {{-- Sobreescribe el metodo del formulario --}}
 
             <div>
                 <label>Tweet:</label>
-                <input name="tweet" value="{{old('tweet')}}">
+                <input name="tweet" value="{{$tweet->message}}">
                 @error('tweet')
                         <div>{{ $message }}</div>
                 @enderror
             </div>
 
-            <div>
-                <label>Tu nombre:</label>
-                <input name="name" value="{{old('name')}}">
-                @error('name')
-                    <div>{{ $message }}</div>
-                @enderror
-            </div>
-            <hr>
             <button type="submit">Enviar</button>
         </form>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tweet;
+use Exception;
 
 class TweetsController extends Controller
 {
@@ -47,6 +48,28 @@ class TweetsController extends Controller
 
         return redirect()->route('tweets');
 
+    }
+
+    public function edit(Tweet $tweet, Request $request)
+    {
+
+        return view('tweets.edit', [
+            'tweet' => $tweet
+        ]);
+    }
+
+
+    public function update(Tweet $tweet, Request $request)
+    {
+        $validated = $request->validate([
+            'tweet' => ['required', 'min:4', 'max:30'],
+        ]);
+
+
+        $tweet->message = $validated['tweet'];
+        $tweet->save();
+
+        return redirect()->route('tweets');
     }
 
 }
