@@ -42,6 +42,10 @@ Route::put('/tweets/{tweet}', [
     App\Http\Controllers\TweetsController::class, 'update'
 ])->name('tweets.update');
 
+Route::delete('tweets/{tweet}', [
+    App\Http\Controllers\TweetsController::class, 'destroy'
+])->name('tweets.destroy');
+
 
 
 

@@ -26,6 +26,11 @@
                 <a href="{{ route('tweets.edit', ['tweet' => $tweet->id])}}">
                     Editar tweet
                 </a>
+                <form action="{{ route('tweets.destroy', ['tweet' => $tweet->id]) }}" method="POST">
+                    @csrf
+                    @method('delete');
+                    <button onclick="return confirm ('Desea borrar el registro {{$tweet->id}}')" type="submit">Eliminar tweet</button>
+                </form>
                 <hr>
             </div>
         @endforeach
