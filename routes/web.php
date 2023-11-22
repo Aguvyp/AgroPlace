@@ -42,9 +42,15 @@ Route::put('/tweets/{tweet}', [
     App\Http\Controllers\TweetsController::class, 'update'
 ])->name('tweets.update');
 
+ // Metodo para elimianr los tweets
 Route::delete('tweets/{tweet}', [
     App\Http\Controllers\TweetsController::class, 'destroy'
 ])->name('tweets.destroy');
+
+// vista de confimación para BORRAR tweets (recibiendo el modelo que necesito {tweet})
+Route::get('/tweets/delete/{tweet}', [
+    App\Http\Controllers\TweetsController::class, 'delete'
+])->name('tweets.delete');
 
 
 

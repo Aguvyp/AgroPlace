@@ -78,4 +78,11 @@ class TweetsController extends Controller
         return redirect()->route('tweets');
     }
 
+    public function delete(Tweet $tweet)
+    {
+        return view('tweets.delete', [
+            'tweet' => $tweet
+        ]);
+    }
+
 }
