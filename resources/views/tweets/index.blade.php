@@ -4,23 +4,25 @@
         <div class="row">
             <div class="col-8 offset-2">
 
-                @if ($notify_tweet_published)
-                    <div class="alert alert-success" role="alert">
-                        Tu tweet ha sido publicado
-                    </div>
-                @endif
+                <div class="alerts pt-2 w-100">
+                    @if ($notify_tweet_published)
+                        <div class="alert alert-success" role="alert">
+                            Tu tweet ha sido publicado
+                        </div>
+                    @endif
 
-                @if ($notify_tweet_updated)
-                    <div class="alert alert-success" role="alert">
-                        Tu tweet ha sido actualizado
-                    </div>
-                @endif
+                    @if ($notify_tweet_updated)
+                        <div class="alert alert-success" role="alert">
+                            Tu tweet ha sido actualizado
+                        </div>
+                    @endif
 
-                @if ($notify_tweet_deleted)
-                    <div class="alert alert-danger" role="alert">
-                        Tu tweet ha sido eliminado
-                    </div>
-                @endif
+                    @if ($notify_tweet_deleted)
+                        <div class="alert alert-danger" role="alert">
+                            Tu tweet ha sido eliminado
+                        </div>
+                    @endif
+                </div>
 
                 <p class="tweet-create pt-3 d-flex justify-content-end">
                     <a href="{{ route('tweets.create') }}" class="btn btn-primary" style="background: #7749F8;">
