@@ -4,6 +4,24 @@
         <div class="row">
             <div class="col-8 offset-2">
 
+                @if ($notify_tweet_published)
+                    <div class="alert alert-success" role="alert">
+                        Tu tweet ha sido publicado
+                    </div>
+                @endif
+
+                @if ($notify_tweet_updated)
+                    <div class="alert alert-success" role="alert">
+                        Tu tweet ha sido actualizado
+                    </div>
+                @endif
+
+                @if ($notify_tweet_deleted)
+                    <div class="alert alert-danger" role="alert">
+                        Tu tweet ha sido eliminado
+                    </div>
+                @endif
+
                 <p class="tweet-create pt-3 d-flex justify-content-end">
                     <a href="{{ route('tweets.create') }}" class="btn btn-primary" style="background: #7749F8;">
                         Publicá tu tweet
@@ -13,7 +31,7 @@
                 @foreach ($tweets as $tweet)
                     <div class="tweet bg-white mb-4 p-4 d-flex w-100">
 
-                        <img class="tweet-image me-4" src="{{asset('upload/users/users.png')}}" alt="{{ $tweet->name }}">
+                        <img class="tweet-image me-4" src="{{ asset('upload/users/users.png') }}" alt="{{ $tweet->name }}">
 
                         <div class="tweet-content w-100">
 
@@ -31,10 +49,12 @@
                                 </a>
 
                                 <div>
-                                    <a class="link-underline link-underline-opacity-0" href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}">
+                                    <a class="link-underline link-underline-opacity-0"
+                                        href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}">
                                         Editar
                                     </a>
-                                    <a class="link-underline link-underline-opacity-0 ps-4" href="{{ route('tweets.delete', ['tweet' => $tweet->id]) }}">
+                                    <a class="link-underline link-underline-opacity-0 ps-4"
+                                        href="{{ route('tweets.delete', ['tweet' => $tweet->id]) }}">
                                         Eliminar
                                     </a>
                                 </div>
