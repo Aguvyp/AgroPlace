@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tweets', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
+            $table->id();
+            $table->text('message');
             $table->text('autor')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tweets', function ($table) {
-            $table->dropColumn('autor');
-        });
+        Schema::dropIfExists('replies');
     }
 };

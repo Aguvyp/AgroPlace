@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function ()
-{
-    return view('index'); //View es el helper
+Route::get('/', function () {
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
 
 //Cuando te pidan /tweets derivale a este controlador "TweetsController" y al metodo "Index"
 Route::get('/tweets', [
@@ -51,7 +64,3 @@ Route::delete('tweets/{tweet}', [
 Route::get('/tweets/delete/{tweet}', [
     App\Http\Controllers\TweetsController::class, 'delete'
 ])->name('tweets.delete');
-
-
-
-

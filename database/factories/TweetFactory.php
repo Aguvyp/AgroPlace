@@ -17,7 +17,8 @@ class TweetFactory extends Factory
     public function definition(): array
     {
         return [
-            'message' => fake() ->text() //Es una funcion que nos devuelve un texto falso random
+            'message' => fake() ->text(), //Es una funcion que nos devuelve un texto falso random
+            'user_id' => rand(1,10)
         ];
     }
 }

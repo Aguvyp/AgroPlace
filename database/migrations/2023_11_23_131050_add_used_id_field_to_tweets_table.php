@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tweets', function (Blueprint $table) {
-            $table->text('autor')->nullable();
+            $table->dropColumn('autor');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -21,8 +23,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tweets', function ($table) {
-            $table->dropColumn('autor');
+        Schema::table('tweets', function (Blueprint $table) {
+            $table->string('autor')->nullable();
+            $table->dropColumn('user_id');
         });
     }
 };

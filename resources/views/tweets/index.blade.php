@@ -33,7 +33,7 @@
                 @foreach ($tweets as $tweet)
                     <div class="tweet bg-white mb-4 p-4 d-flex w-100">
 
-                        <img class="tweet-image me-4" src="{{ asset('upload/users/users.png') }}" alt="{{ $tweet->name }}">
+                        <img class="tweet-image me-4" src="{{ asset('upload/users/users.png') }}" alt="{{ $tweet->name }}" style="border-radius: 50%">
 
                         <div class="tweet-content w-100">
 
@@ -41,7 +41,10 @@
                                 {{ $tweet->created_at }}
                             </div>
 
-                            <div class="tweet-message d-flex">
+                            <div class="tweet-messagecom">
+                                @if ($tweet->user != null)
+                                <strong>{{$tweet->user->name}}:</strong>
+                                @endif
                                 {{ $tweet->message }}
                             </div>
 

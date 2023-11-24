@@ -14,4 +14,15 @@ class Tweet extends Model
         'autor'
     ];
 
+    public function user()
+    {
+        //Los tweets pertenecen a un user
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function replies()
+    {
+        //Muchas respuestas perteneces a un tweet
+        return $this->belongsTo(Reply::class);
+    }
 }
