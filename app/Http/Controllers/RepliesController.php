@@ -12,13 +12,15 @@ class RepliesController extends Controller
 {
     //
     public function create($tweet, Request $request) {
+
         return view('replies.create', [
             'reply' => "",
             'tweet_id' => $tweet
         ]);
     }
 
-    public function store(Request $request) {
+    public function store($tweet, Request $request) {
+
         $validated = $request->validate([
             'reply' => ['required', 'min:4', 'max:140']
         ]);

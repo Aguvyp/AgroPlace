@@ -1,5 +1,6 @@
 <?php
 use illuminate\support\Facades\Route;
+use App\Http\Controllers\RepliesController;
 
 Route::get('/tweets', [
     App\Http\Controllers\TweetsController::class, 'index'
@@ -7,10 +8,6 @@ Route::get('/tweets', [
 
 Route::middleware('auth')->group(function()
 {
-    Route::get('/tweets/{tweet}/reply/create', [
-        App\Http\Controllers\RepliesController::class, 'create'
-    ])->name('reply.create');
-
     Route::get('/tweets/create', [
         App\Http\Controllers\TweetsController::class, 'create'
     ])
@@ -41,6 +38,16 @@ Route::middleware('auth')->group(function()
     Route::get('/tweets/delete/{tweet}', [
         App\Http\Controllers\TweetsController::class, 'delete'
     ])->name('tweets.delete');
+
+    Route::get('/tweets/{tweet}/replies/create', [
+        App\Http\Controllers\RepliesController::class, 'create'
+    ])->name('replies.create');
+
+    Route::post('/tweets{tweet}', [
+        App\Http\Controllers\RepliesController::class, 'store'
+    ])->name('replies.store');
+
+
 });
 
 

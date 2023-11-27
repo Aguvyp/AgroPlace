@@ -12,7 +12,8 @@ class TweetsController extends Controller
     public function index()
     {
         //Recuperar todos los tweets
-        $tweets = Tweet::orderBy('created_at', 'DESC')->get(); //Me trae todos los tweets de la tabla
+        $tweets = Tweet::with(['replies.user', 'user'])->orderBy('created_at', 'DESC')->get(); //Me trae todos los tweets y las respuestas
+
 
         //Recupera variable de session
         $notify_tweet_published = session()->get('notify_tweet_published', false);
@@ -59,9 +60,6 @@ class TweetsController extends Controller
         session()->flash('notify_tweet_published', true);
 
         return redirect()->route('tweets');
-
-
-
     }
 
     public function edit(Tweet $tweet, Request $request)

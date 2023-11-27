@@ -23,6 +23,6 @@ class Tweet extends Model
     public function replies()
     {
         //Muchas respuestas perteneces a un tweet
-        return $this->belongsTo(Reply::class);
+        return $this->hasMany(Reply::class);
     }
 }

@@ -39,9 +39,11 @@
                         </p>
 
                         @foreach ($tweets as $tweet)
-                        <div class="tweet bg-white mb-4 p-4 flex flex-row ">
+                            <div class="tweet bg-white mb-4 p-4 flex flex-row ">
 
-                                <img class="tweet-image basis-1/4 me-4" src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}" style="border-radius: 50%">
+                                <img class="tweet-image basis-1/4 me-4"
+                                    src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}"
+                                    style="border-radius: 50%">
 
                                 <div class="tweet-content basis-3/4">
 
@@ -58,7 +60,7 @@
 
                                     <div class="tweet-actions flex justify-between w-28">
                                         <a class="link-underline link-underline-opacity-0"
-                                            href="{{ route('reply.create', ['tweet' => $tweet->id]) }}">
+                                            href="{{ route('replies.create', ['tweet' => $tweet->id]) }}">
                                             Contestar
                                         </a>
 
@@ -78,6 +80,20 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="col-8 offset-6">
+                                @if ($tweet->replies)
+                                    @foreach ($tweet->replies as $reply)
+                                        <div class="reply bg-white mb-4 p-4 flex flex-row ">
+                                            <div class="tweet-content basis-3/4">
+                                                <div class="tweet-reply">
+                                                    Respuesta:{{ $reply->message }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         @endforeach
                     </div>
