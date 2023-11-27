@@ -48,4 +48,8 @@ class User extends Authenticatable
         //Un user tiene muchos tweets
         return $this->hasMany(Tweet::class, 'user_id', 'id'); //:: hace referencia a un metodo estastico de una clase
     }
+
+    public function replies() {
+        return $this->hasMany(Reply::class, 'user_id, id');
+    }
 }

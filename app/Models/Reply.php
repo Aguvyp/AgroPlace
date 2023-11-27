@@ -10,14 +10,17 @@ class Reply extends Model
     use HasFactory;
 
     protected $fillable = [
-        'message',
-        'autor'
+        'message'
     ];
 
     public function tweets()
     {
         //Un tweet tiene muchas respuestas
         return $this->hasMany(Tweet::class, 'user_id', 'id');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 

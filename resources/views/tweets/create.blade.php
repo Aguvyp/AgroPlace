@@ -21,14 +21,14 @@
 
                         <form id="formCreate" action="{{ route('tweets.store') }}" method="POST">
                             @csrf
-
+{{--
                             <div class="mb-3">
                                 <input name="name" type="text" class="form-control" placeholder="Tu nombre"
                                     value="{{ old('name') }}">
                                 @error('name')
                                     <div>{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3">
                                 <textarea name="tweet" class="form-control" placeholder="!¿Qué está pensando?¡" rows="3">{{old('tweet')}}</textarea>

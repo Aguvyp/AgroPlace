@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
             $table->text('message');
-            $table->text('autor')->nullable();
+            $table->integer('tweet_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
+
+            $table->foreign('tweet_id')->references('id')->on('tweets');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

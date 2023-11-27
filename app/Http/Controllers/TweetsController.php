@@ -32,7 +32,9 @@ class TweetsController extends Controller
     //Definimos metodo para recuperar la vista create
     public function create()
     {
-        return view('tweets.create');
+        return view('tweets.create', [
+            'tweet'=>''
+        ]);
     }
 
     //Definimose el metodo para el post
@@ -41,15 +43,14 @@ class TweetsController extends Controller
 
         //Validation...
         $validate = $request->validate([
-            'tweet' => ['required','max:30', 'min:4'],
-            'name' => ['required','max:15', 'min:3']
+            'tweet' => ['required','max:30', 'min:4']
         ]);
 
 
         //Creamos el modelo...
         $new_tweet = new Tweet; //Creamos nuevo modelo de la clase Http/Models/Tweet
         $new_tweet->message = $validate['tweet'];
-        $new_tweet->autor = $validate['name'];
+        $new_tweet->user_id = auth()->user()->id;
 
         //... y lo guardamos
         $new_tweet->save(); //Ejecuto la funcion guardar tweet
