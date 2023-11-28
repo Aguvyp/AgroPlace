@@ -26,13 +26,13 @@ class RepliesController extends Controller
         ]);
 
         //Creamos el modelo
-        $new_reply = new Reply; //Creamos nuevo modelo de la clase Http/Models/Reply
+        $new_reply = new Reply;
         $new_reply->message = $validated['reply'];
 
         //Accedemos al tweet_id desde los parametros de la URL
         $tweet_id = (int) $request->input('tweet_id');
 
-        //Asignamos el tweet_id
+
         $new_reply->tweet_id = $tweet_id;
 
         //Asignamos el user_id del usuario autenticado
