@@ -29,13 +29,13 @@
                 <div class="flex justify-end">
                     @if (auth()->check())
                         @if ($tweet->user_id == auth()->user()->id)
-                            <a class="link-underline link-underline-opacity-0 text-violet-500"
-                                href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}">
-                                Editar
+                            <a class="link-underline link-underline-opacity-0 text-violet-500 p-1 mt-2 border border-gray-200 rounded-full"
+                            href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}">
+                            Editar
                             </a>
-                            <a class="link-underline link-underline-opacity-0 ps-4 text-violet-500"
-                                href="{{ route('tweets.delete', ['tweet' => $tweet->id]) }}">
-                                Eliminar
+                            <a class="link-underline link-underline-opacity-0 ml-2 text-violet-500 p-1 mt-2 border border-gray-200 rounded-full"
+                            href="{{ route('tweets.delete', ['tweet' => $tweet->id]) }}">
+                            Eliminar
                             </a>
                         @endif
                     @endif
@@ -53,7 +53,7 @@
 
                 <img class="reply-image w-16 h-16 rounded-full" src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}">
 
-                <div class="reply-content ml-4">
+                <div class="reply-content ml-4 w-11/12">
 
                     <div class="reply-timestamp">
                         {{ $reply->created_at }}
@@ -66,23 +66,27 @@
                         {{ $reply->message }}
                     </div>
 
+                    <div class="reply-actions flex justify-between">
+                        <a class="link-underline link-underline-opacity-0 text-violet-500 p-1 mt-2 border border-gray-200 rounded-full "
+                            href="{{ route('replies.create', ['tweet' => $tweet->id]) }}">
+                            Contestar
+                        </a>
 
-                    <div class="reply-actions flex justify-start">
-                        @if (auth()->check())
-                            @if ($reply->user_id == auth()->user()->id)
-                                <a class="link-underline link-underline-opacity-0 text-violet-500"
+                        <div class="flex justify-end">
+                            @if (auth()->check())
+                                @if ($reply->user_id == auth()->user()->id)
+                                    <a class="link-underline link-underline-opacity-0 text-violet-500 p-1 mt-2 border border-gray-200 rounded-full"
                                     href="{{ route('replies.edit', ['reply' => $reply->id]) }}">
                                     Editar
-                                </a>
-                                <a class="link-underline link-underline-opacity-0 ps-4 text-violet-500"
+                                    </a>
+                                    <a class="link-underline link-underline-opacity-0 ml-2 text-violet-500 p-1 mt-2 border border-gray-200 rounded-full"
                                     href="{{ route('replies.delete', ['reply' => $reply->id]) }}">
                                     Eliminar
-                                </a>
+                                    </a>
+                                @endif
                             @endif
-                        @endif
+                        </div>
                     </div>
-
-
                 </div>
             </div>
         @endforeach
