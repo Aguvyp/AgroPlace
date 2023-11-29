@@ -71,11 +71,11 @@
                         @if (auth()->check())
                             @if ($reply->user_id == auth()->user()->id)
                                 <a class="link-underline link-underline-opacity-0 text-violet-500"
-                                    href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}">
+                                    href="{{ route('replies.edit', ['reply' => $reply->id]) }}">
                                     Editar
                                 </a>
                                 <a class="link-underline link-underline-opacity-0 ps-4 text-violet-500"
-                                    href="{{ route('tweets.delete', ['tweet' => $tweet->id]) }}">
+                                    href="{{ route('replies.delete', ['reply' => $reply->id]) }}">
                                     Eliminar
                                 </a>
                             @endif

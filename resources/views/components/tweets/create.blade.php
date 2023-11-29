@@ -1,4 +1,3 @@
-{{-- Con este formulario creo los tweets desde el index --}}
 <div class="container-lg mt-5 lg:mx-auto lg:w-8/12">
     <form action="{{ route('tweets.store') }}" method="POST" class="container bg-white p-7 border border-gray-200 rounded-lg">
         @csrf

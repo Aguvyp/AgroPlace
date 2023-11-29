@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->foreign('tweet_id')->references('id')->on('tweets');
+            $table->foreign('tweet_id')->references('id')->on('tweets')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

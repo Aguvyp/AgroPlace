@@ -20,14 +20,25 @@ class TweetsController extends Controller
         $notify_tweet_updated = session()->get('notify_tweet_updated', false);
         $notify_tweet_deleted = session()->get('notify_tweet_deleted', false);
 
+        //Recupera variable de session reply
+        $notify_reply_published = session()->get('notify_reply_published', false);
+        $notify_reply_updated = session()->get('notify_reply_updated', false);
+        $notify_reply_deleted = session()->get('notify_reply_deleted', false);
+
         //Pasarlos a la vista ppara que los muestre por pantalla
+        //(array asociativo: clave->valor)
         return view('tweets/index', [
             'tweets' => $tweets,
+            //En la carpeta vistas busque tweets y levante el index
+            //Primer parametro archivo de vista y el segundo el array que quiero mostrar
             'notify_tweet_published' => $notify_tweet_published,
             'notify_tweet_updated' => $notify_tweet_updated,
-            'notify_tweet_deleted' => $notify_tweet_deleted
-        ]); //En la carpeta vistas busque tweets y levante el index
-            //Primer parametro archivo de vista y el segundo el array que quiero mostrar
+            'notify_tweet_deleted' => $notify_tweet_deleted,
+
+            'notify_reply_published' => $notify_reply_published,
+            'notify_reply_updated' => $notify_reply_updated,
+            'notify_reply_deleted' => $notify_reply_deleted
+        ]);
     }
 
     //Definimos metodo para recuperar la vista create

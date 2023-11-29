@@ -7,19 +7,21 @@
     </x-slot>
 
     <div class="container-lg mt-5 lg:mx-auto lg:w-8/12">
-        <form action="{{ route('tweets.update', ['tweet' => $tweet->id]) }}" method="POST"
-            class="container bg-white p-7 border border-gray-200 rounded-lg">
+        <form action="{{ route('replies.update', ['reply' => $reply->id]) }}" method="POST" class="container bg-white p-7 border border-gray-200 rounded-lg">
             @csrf
             @method('put')
-            <h2>Edita tu tweet</h2>
+            <h2 class="mb-4"><strong>Editá tu respuesta a:</strong></h2>
+            <div class="mb-4">
+                <em>Aca iria el mensaje del tweet a responder</em>
+            </div>
+            <input name="reply" value="{{ $reply->message }}" placeholder="{{ old('reply') }}" class="container mb-4 border border-gray-200 rounded-lg w-11/12 ml-20" style="height: 4rem;">
 
-            <input name="tweet" value="{{ $tweet->message }}"
-                class="container mx-auto mb-4 border border-gray-200 rounded-lg" style="height: 4rem">
 
             @error('tweet')
                 <div role="alert">
                     <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700 mb-2">
-                        {{ $message }}</div>
+                    {{$message}}
+                    </div>
                 </div>
             @enderror
 

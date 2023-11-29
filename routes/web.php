@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/tweets');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/tweets');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
