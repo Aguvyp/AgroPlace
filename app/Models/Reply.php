@@ -16,11 +16,11 @@ class Reply extends Model
     public function tweets()
     {
         //Un tweet tiene muchas respuestas
-        return $this->hasMany(Tweet::class, 'user_id', 'id');
+        return $this->belongsTo(Tweet::class, 'tweet_id');
     }
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
 

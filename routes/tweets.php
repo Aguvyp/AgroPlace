@@ -1,6 +1,5 @@
 <?php
 use illuminate\support\Facades\Route;
-use App\Http\Controllers\RepliesController;
 
 Route::get('/tweets', [
     App\Http\Controllers\TweetsController::class, 'index'

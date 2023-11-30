@@ -12,7 +12,7 @@
             @method('put')
             <h2 class="mb-4"><strong>Editá tu respuesta a:</strong></h2>
             <div class="mb-4">
-                <em>Aca iria el mensaje del tweet a responder</em>
+                <em>{{$reply->tweets->message}}</em>
             </div>
             <input name="reply" value="{{ $reply->message }}" placeholder="{{ old('reply') }}" class="container mb-4 border border-gray-200 rounded-lg w-11/12 ml-20" style="height: 4rem;">
 

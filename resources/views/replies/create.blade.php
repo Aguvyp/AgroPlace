@@ -13,7 +13,7 @@
             <input type="hidden" name="tweet_id" value="{{ $tweet_id }}">
             <h2 class="mb-4"><strong>Escribí tu respuesta a:</strong></h2>
             <div class="mb-4">
-                <em>Aca va el mensaje del tweet a contestar</em>
+                <em>{{$tweet_message}}</em>
             </div>
             <input name="reply" value="{{ old('reply') }}" class="container mb-4 border border-gray-200 rounded-lg w-11/12 ml-20" style="height: 4rem">
 

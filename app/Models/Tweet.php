@@ -14,6 +14,7 @@ class Tweet extends Model
         'autor'
     ];
 
+
     public function user()
     {
         //Los tweets pertenecen a un user

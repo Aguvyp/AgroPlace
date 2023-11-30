@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reply;
+use App\Models\Tweet;
 
 
 use Illuminate\Validation\ValidationException;
@@ -12,17 +13,21 @@ use function Laravel\Prompts\text;
 
 class RepliesController extends Controller
 {
-    //
-    public function create($tweet, Request $request) {
+
+    public function create($tweet) {
+
+        $tweet_model = Tweet::find($tweet);
+        $tweet_message = $tweet_model->message;
 
         return view('replies.create', [
             'reply' => "",
             'tweet_id' => $tweet,
+            'tweet_message' => $tweet_message
 
         ]);
     }
 
-    public function store($tweet, Request $request) {
+    public function store(Request $request) {
 
         $validated = $request->validate([
             'reply' => ['required', 'min:4', 'max:140']
@@ -47,8 +52,11 @@ class RepliesController extends Controller
         return redirect()->route('tweets');
     }
 
-    public function edit(Reply $reply, Request $request)
+    public function edit(Reply $reply)
     {
+        // Cargar la relación 'tweet'
+        $reply->load('tweets');
+
         return view('replies.edit', [
             'reply' => $reply
         ]);
@@ -69,7 +77,7 @@ class RepliesController extends Controller
         return redirect()->route('tweets');
     }
 
-    public function destroy(Reply $reply, Request $request)
+    public function destroy(Reply $reply)
     {
         $reply->delete();
 
@@ -78,8 +86,10 @@ class RepliesController extends Controller
         return redirect()->route('tweets');
     }
 
-    public function delete(Reply $reply, Request $request)
+    public function delete(Reply $reply)
     {
+        $reply->load('tweets');
+
         return view('replies.delete', [
             'reply' => $reply
         ]);

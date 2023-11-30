@@ -12,7 +12,7 @@
             @method('DELETE')
             <h2 class="mb-4"><strong>Vas a eliminar tu respuesta a:</strong></h2>
             <div class="mb-4">
-                <em>Texto del tweet</em>
+                <em>{{$reply->tweets->message}}</em>
             </div>
             <textarea class="container mb-4 border border-gray-200 rounded-lg  w-11/12 ml-20" style="resize: none">{{$reply->message}}</textarea>
 
