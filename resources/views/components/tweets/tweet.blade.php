@@ -11,10 +11,10 @@
 
             <div class="tweet-timestamp ">
                 @if ($tweet->user != null)
-                    <a href="{{ route('user.profile', ['user' => $tweet->user->id]) }}"><strong
-                            class="mr-2">{{ $tweet->user->name }}</strong></a>
+                    <a href="{{ route('user.profile', ['user' => $tweet->user->id]) }}"><p class="inline-block"><strong>{{ $tweet->user->name }}</strong></p></a>
+                    <p class="inline-block"><strong>{{'@'}}{{ $tweet->user->nick }}</strong></p>
+                    <p class="inline-block text-gray-400 text-sm font-light ml-4">{{ $tweet->created_at }}</p>
                 @endif
-                <p class="inline-block text-gray-400 text-sm font-light">{{ $tweet->created_at }}</p>
             </div>
 
             <div class="tweet-messagecom text-lg mt-2">

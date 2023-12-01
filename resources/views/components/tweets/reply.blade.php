@@ -6,13 +6,12 @@
         <div class="reply-content ml-4 w-11/12">
 
             <div class="reply-timestamp">
-                {{ $reply->created_at }}
+                <a href="{{ route('user.profile', ['user' => $reply->user->id]) }}"><p class="inline-block"><strong>{{ $reply->user->name }}</strong></p></a>
+                    <p class="inline-block"><strong>{{'@'}}{{ $reply->user->nick }}</strong></p>
+                    <p class="inline-block text-gray-400 text-sm font-light ml-4">{{ $reply->created_at }}</p>
             </div>
 
             <div class="reply-message text-lg mt-2">
-                @if ($reply->user != null)
-                    <a href="{{ route('user.profile', ['user' => $reply->user->id]) }}"><strong>{{ $reply->user->name }}:</strong></a>
-                @endif
                 {{ $reply->message }}
             </div>
 

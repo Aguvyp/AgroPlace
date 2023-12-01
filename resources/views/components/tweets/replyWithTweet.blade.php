@@ -7,7 +7,7 @@
 
         <div class="reply-timestamp font-semibold">
             <p class="inline-block">{{ $reply->user->name }}</p>
-            <p class="inline-block">@ {{ $reply->user->nick }}</p>
+            <p class="inline-block">{{'@'}}{{ $reply->user->nick }}</p>
             <p class="inline-block text-gray-400 text-sm font-light ml-4">{{ $reply->created_at }}</p>
         </div>
 
