@@ -68,14 +68,21 @@
         @endauth
 
         @guest
-        <div class="flex bg-white justify-center mt-4 border border-gray-200 rounded-lg shadow-md mt-5 lg:mx-auto lg:w-8/12 items-center" style="height: 4rem">
-            <p>Debes <a href="{{route('login')}}" class="text-blue-400">iniciar sesión</a> para publicar tweets</p>
-        </div>
+            <div class="flex bg-white justify-center mt-4 border border-gray-200 rounded-lg shadow-md mt-5 lg:mx-auto lg:w-8/12 items-center"
+                style="height: 4rem">
+                <p>Debes <a href="{{ route('login') }}" class="text-blue-400">iniciar sesión</a> para publicar tweets</p>
+            </div>
         @endguest
 
         @foreach ($tweets as $tweet)
             <x-tweets.tweet :tweet="$tweet">
             </x-tweets.tweet>
+
+            @foreach ($tweet->replies as $reply)
+                <x-tweets.reply :reply="$reply">
+                </x-tweets.reply>
+            @endforeach
+
         @endforeach
     </div>
 </x-app-layout>
