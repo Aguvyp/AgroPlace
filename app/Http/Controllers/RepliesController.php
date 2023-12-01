@@ -55,7 +55,7 @@ class RepliesController extends Controller
     public function edit(Reply $reply)
     {
         // Cargar la relación 'tweet'
-        $reply->load('tweets');
+        /* $reply->load('tweets'); */
 
         return view('replies.edit', [
             'reply' => $reply
@@ -88,8 +88,6 @@ class RepliesController extends Controller
 
     public function delete(Reply $reply)
     {
-        $reply->load('tweets');
-
         return view('replies.delete', [
             'reply' => $reply
         ]);

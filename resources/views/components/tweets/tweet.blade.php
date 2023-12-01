@@ -3,17 +3,17 @@
     <div class="tweet bg-white mb-8 p-4 flex items-start border border-gray-200 rounded-lg shadow-md">
 
 
-        <img class="tweet-image w-16 h-16 rounded-full"
-            src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}" style="border-radius: 50%">
+        <a href="{{ route('user.profile', ['user' => $tweet->user->id]) }}"><img class="tweet-image w-16 h-16 rounded-full"
+            src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}" style="border-radius: 50%"></a>
 
 
         <div class="tweet-content flex-1 pl-4 ml-4">
 
-            <div class="tweet-timestamp">
+            <div class="tweet-timestamp ">
                 @if ($tweet->user != null)
-                    <strong class="mr-2">{{ $tweet->user->name }}</strong>
+                <a href="{{ route('user.profile', ['user' => $tweet->user->id]) }}"><strong class="mr-2">{{ $tweet->user->name }}</strong></a>
                 @endif
-                {{ $tweet->created_at }}
+                <p class="inline-block text-gray-400 text-sm font-light">{{ $tweet->created_at }}</p>
             </div>
 
             <div class="tweet-messagecom text-lg mt-2">
@@ -51,7 +51,7 @@
         @foreach ($tweet->replies as $reply)
             <div class="reply bg-white mb-8 p-4 flex border border-gray-200 rounded-lg w-11/12 ml-auto shadow-md">
 
-                <img class="reply-image w-16 h-16 rounded-full" src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}">
+                <a href="{{ route('user.profile', ['user' => $tweet->user->id]) }}"><img class="reply-image w-16 h-16 rounded-full" src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}"></a>
 
                 <div class="reply-content ml-4 w-11/12">
 
@@ -61,7 +61,7 @@
 
                     <div class="reply-message text-lg mt-2">
                         @if ($reply->user != null)
-                            <strong>{{ $reply->user->name }}:</strong>
+                            <a href="{{ route('user.profile', ['user' => $tweet->user->id]) }}"><strong>{{ $reply->user->name }}:</strong></a>
                         @endif
                         {{ $reply->message }}
                     </div>

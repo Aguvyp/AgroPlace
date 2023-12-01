@@ -22,6 +22,34 @@
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
+        <div>
+            <x-input-label for="nick" :value="__('Nickname')" />
+            <x-text-input id="nick" name="nick" type="text" class="mt-1 block w-full" :value="old('nick', $user->nick)" required autofocus autocomplete="nick" />
+            <x-input-error class="mt-2" :messages="$errors->get('nick')" />
+        </div>
+        <div>
+            <x-input-label for="locality" :value="__('Localidad')" />
+            <x-text-input id="locality" name="locality" type="text" class="mt-1 block w-full" :value="old('locality', $user->locality)" required autofocus autocomplete="locality" />
+            <x-input-error class="mt-2" :messages="$errors->get('locality')" />
+        </div>
+        <div>
+            <x-input-label for="province" :value="__('Provincia')" />
+            <x-text-input id="province" name="province" type="text" class="mt-1 block w-full" :value="old('province', $user->province)" required autofocus autocomplete="province" />
+            <x-input-error class="mt-2" :messages="$errors->get('province')" />
+        </div>
+        <div>
+            <x-input-label for="country" :value="__('País')" />
+            <x-text-input id="country" name="country" type="text" class="mt-1 block w-full" :value="old('country', $user->country)" required autofocus autocomplete="country" />
+            <x-input-error class="mt-2" :messages="$errors->get('country')" />
+        </div>
+        <div>
+            <x-input-label for="phone" :value="__('Teléfono')" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+
+
+
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -48,7 +76,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Guardar') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

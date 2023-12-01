@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -26,16 +27,26 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user(); // Obtener la instancia del usuario
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+    $validated = $request->validate([
+        'nick' => ['required'],
+        'locality' => ['max:50'],
+        'province' => ['max:50'],
+        'country' => ['max:30'],
+        'phone' => ['regex:/^[0-9+().\/\s-]+$/', 'min:11']
+    ]);
 
-        $request->user()->save();
+    $user->fill($validated); // Llenar los datos validados en la instancia del usuario
 
-        return Redirect::route('profile.edit')
-            ->with('status', 'profile-updated');
+    if ($user->isDirty('email')) {
+        $user->email_verified_at = null;
+    }
+
+    $user->save(); // Guardar el usuario
+
+    return redirect()->route('profile.edit')
+        ->with('status', 'profile-updated');
             //Es lo mismo que hacer session()->flash('status', 'profile-update')
     }
 
@@ -59,4 +70,5 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
 }

@@ -12,7 +12,9 @@ class TweetsController extends Controller
     public function index()
     {
         //Recuperar todos los tweets
-        $tweets = Tweet::with(['replies.user', 'user'])->orderBy('created_at', 'DESC')->get(); //Me trae todos los tweets y las respuestas
+        $tweets = Tweet::with(['replies.user', 'user'])->orderBy('created_at', 'DESC')
+        ->with(['user','replies']) //Paso arrays con los modelos que quiero que me traiga -minimizo queries-
+        ->get(); //Me trae todos los tweets y las respuestas
 
 
         //Recupera variable de session

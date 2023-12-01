@@ -7,17 +7,15 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-
-    public function showProfile(User $user)
+    public function profile(User $user)
     {
         $latestTweets = $user->tweets()->latest()->take(10)->get();
         $latestReplies = $user->replies()->latest()->take(10)->get();
 
-        return view('user.profile', [
-            'user' => $user,
+        return view(('user.profile'), [
+            'user' =>$user,
             'latestTweets' => $latestTweets,
-            'latestReplies' => $latestReplies,
+            'latestReplies' => $latestReplies
         ]);
     }
-
 }
