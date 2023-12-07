@@ -14,7 +14,7 @@
             <div class="mb-4">
                 <em>{{$reply->tweets->message}}</em>
             </div>
-            <textarea class="container mb-4 border border-gray-200 rounded-lg  w-11/12 ml-20" style="resize: none">{{$reply->message}}</textarea>
+            <div class="container mb-4 w-11/12 ml-20"> <em>{{$reply->message}}</em></div>
 
             @error('tweet')
                 <div role="alert">

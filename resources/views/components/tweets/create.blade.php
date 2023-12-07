@@ -3,7 +3,7 @@
         @csrf
             <h2>¿En qué andas?</h2>
 
-            <input name="tweet" value="{{ old('tweet') }}"  class="container mx-auto mb-4 border border-gray-200 rounded-lg" style="height: 4rem">
+            <input name="tweet"  class="container mx-auto mb-4 border border-gray-200 rounded-lg" style="height: 4rem">
 
             @error('tweet')
                 <div role="alert">

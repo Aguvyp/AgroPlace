@@ -54,8 +54,10 @@
             @method('delete')
             <h2 class="mb-2"><strong>Vas a eliminar tu tweet</strong></h2>
 
-            <input name="tweet" value="{{ $tweet->message }}"
-                class="container mx-auto mb-4 border border-gray-200 rounded-lg" style="height: 4rem">
+            <div name="tweet"
+                class="container mx-auto mb-4 mt-4 ml-8">
+                <em>{{$tweet->message}}</em>
+            </div>
 
             @error('tweet')
                 <div role="alert">

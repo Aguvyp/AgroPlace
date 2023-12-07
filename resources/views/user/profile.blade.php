@@ -21,27 +21,35 @@
                     <h2 class="text-xl"><strong>Perfil de {{ $user->name }}</strong></h2>
                 </div>
 
-                <div class="mb-2">
-                    @ {{ $user->nick }}
-                </div>
+                @if ($user->nick != null)
+                    <div class="mb-2">
+                        @ {{ $user->nick }}
+                    </div>
+                @endif
 
-                <div class="text-xs font-semibold mb-1">
-                    {{ $user->locality }} - {{ $user->province }} - {{ $user->country }}
-                </div>
+                @if ($user->locality != null || $user->province != null || $user->country != null)
+                    <div class="text-xs font-semibold mb-1">
+                        {{ $user->locality }} - {{ $user->province }} - {{ $user->country }}
+                    </div>
+                @endif
 
-                <div class="text-xs">
-                    +54 9 {{ $user->phone }}
-                </div>
+                @if ($user->phone != null)
+                    <div class="text-xs">
+                        +54 9 {{ $user->phone }}
+                    </div>
+                @endif
+
             </div>
         </div>
 
-        <h2 class="mt-16 text-xl font-semibold">Últimas 10 publicaciones de @ {{ $user->nick }}</h2>
-
+        @if ($user->tweets->count())
+        @endif
     </div>
 
 
 
-    @if ($user->tweets)
+    @if ($user->tweets->count())
+        <h2 class="mt-16 text-xl font-semibold lg:mx-auto lg:w-8/12">Últimas 10 publicaciones de @ {{ $user->nick }}</h2>
         @foreach ($latestTweets as $tweet)
             <x-tweets.tweet :tweet="$tweet">
             </x-tweets.tweet>
@@ -49,8 +57,8 @@
     @endif
 
     <div class="container mt-5 lg:mx-auto lg:w-8/12">
-        <h2 class="mt-16 text-xl font-semibold">Últimos 10 comentarios de @ {{ $user->nick }}</h2>
-        @if ($user->replies)
+        @if ($user->replies->count())
+            <h2 class="mt-16 text-xl font-semibold">Últimos 10 comentarios de @ {{ $user->nick }}</h2>
             @foreach ($latestReplies as $reply)
                 <x-tweets.replyWithTweet :reply="$reply">
                 </x-tweets.replyWithTweet>

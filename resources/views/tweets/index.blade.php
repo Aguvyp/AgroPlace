@@ -1,9 +1,11 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Tweets
-        </h2>
+        <a href="{{ route('tweets') }}">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center" style="text-shadow: 2px 2px 4px rgba(160, 12, 228, 0.767);">
+                T A L K I N G
+            </h2>
+        </a>
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -82,7 +84,6 @@
                 <x-tweets.reply :reply="$reply">
                 </x-tweets.reply>
             @endforeach
-
         @endforeach
     </div>
 </x-app-layout>
