@@ -2,10 +2,17 @@
     <div class="tweet bg-white mb-8 p-4 flex items-start border border-gray-200 rounded-lg shadow-md">
 
 
-        <a href="{{ route('user.profile', ['user' => $tweet->user->id]) }}"><img
-                class="tweet-image w-16 h-16 rounded-full hover:scale-110"
-                src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}" style="border-radius: 50%"></a>
-
+        <a href="{{ route('user.profile', ['user' => $tweet->user->id]) }}">
+            @if ($tweet->user->image)
+                <img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
+                    src="{{ asset('storage/' . $tweet->user->image) }}" alt="{{ $tweet->name }}" style="border-radius: 50%">
+                </a>
+             @else
+                <img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
+                src="{{ asset('upload/users/users.png') }}"alt="{{ $tweet->name }}" style="border-radius: 50%">
+                </a>
+            @endif
+        </a>
 
         <div class="tweet-content ml-4 w-11/12">
 
@@ -14,7 +21,7 @@
                     @if ($tweet->user_id != null)
                         <strong><a class="hover:text-violet-600"
                                 href="{{ route('user.profile', ['user' => $tweet->user->id]) }}">{{ $tweet->user->name }}</a></strong>
-                        <strong class="text-gray-400">{{'@'}}{{$tweet->user->nick }}</strong>
+                        <strong class="text-gray-400">{{ '@' }}{{ $tweet->user->nick }}</strong>
                     @endif
                 </span>
                 <span class="text-gray-700">

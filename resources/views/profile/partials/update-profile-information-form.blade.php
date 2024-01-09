@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("ACtualiza la informacion de tu perfil y la direccion de email") }}
+            {{ __("Actualiza la informacion de tu perfil,  la direccion de email e imagen") }}
         </p>
     </header>
 
@@ -13,10 +13,20 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
+        <div>
+            <x-input-label for="name" :value="__('Foto de perfil')" />
+            @if ($user->image)
+                <div class="w-80 rounded-full">
+                    <img class="rounded-full mb-2 mt-2" src="{{asset('storage/' . $user->image) }}" alt="Foto de perfil actual">
+                </div>
+            @endif
+            <input type="file" class="form-input-file" accept="image/*" id="image" name="image">
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
+        </div>
         <div>
             <x-input-label for="name" :value="__('Nombre')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />

@@ -1,7 +1,14 @@
 <div class="user-replies bg-white mb-6 mt-7 p-4 flex items-start border border-gray-200 rounded-lg shadow-md">
-    <a href="{{ route('user.profile', ['user' => $reply->user->id]) }}"><img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
-        src="{{ asset('upload/users/users.png') }}"alt="{{ $reply->name }}"+
-        style="border-radius: 50%">
+    <a href="{{ route('user.profile', ['user' => $reply->user->id]) }}">
+        @if ($reply->user->image)
+                <img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
+                    src="{{ asset('storage/' . $reply->user->image) }}" alt="{{ $reply->name }}" style="border-radius: 50%">
+                </a>
+             @else
+                <img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
+                src="{{ asset('upload/users/users.png') }}"alt="{{ $reply->name }}" style="border-radius: 50%">
+                </a>
+            @endif
     </a>
 
 
@@ -25,10 +32,16 @@
 
         <div class="reply-tweet">
             <div class="user-tweets bg-white mb-6 mt-7 p-4 flex items-start ">
-                <a href="{{ route('user.profile', ['user' => $reply->tweets->user]) }}"><img class=" hover:scale-110 tweet-image w-16 h-16 rounded-full"
-                        src="{{ asset('upload/users/users.png') }}"alt="{{ $reply->name }}"
-                        style="border-radius: 50%"></a>
-
+                <a href="{{ route('user.profile', ['user' => $reply->tweets->user]) }}">
+                    @if ($reply->tweets->user->image)
+                <img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
+                    src="{{ asset('storage/' . $reply->tweets->user->image) }}" alt="{{ $reply->tweets->user->name }}" style="border-radius: 50%">
+                </a>
+             @else
+                <img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
+                src="{{ asset('upload/users/users.png') }}"alt="{{ $reply->tweets->user->name }}" style="border-radius: 50%">
+                </a>
+            @endif
 
                 <div class="tweet-content flex-1 pl-4 ml-4">
 

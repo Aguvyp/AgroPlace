@@ -1,7 +1,16 @@
 <div class="container mt-5 lg:mx-auto lg:w-8/12">
     <div class="reply bg-white mb-8 p-4 flex border border-gray-200 rounded-lg w-11/12 ml-auto shadow-md">
 
-        <a href="{{ route('user.profile', ['user' => $reply->user->id]) }}"><img class="reply-image w-16 h-16 rounded-full hover:scale-110" src="{{ asset('upload/users/users.png') }}"alt="{{ $reply->tweets->name }}"></a>
+        <a href="{{ route('user.profile', ['user' => $reply->user->id]) }}">
+            @if ($reply->user->image)
+                <img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
+                    src="{{ asset('storage/' . $reply->user->image) }}" alt="{{ $reply->name }}" style="border-radius: 50%">
+                </a>
+             @else
+                <img class="tweet-image w-16 h-16 rounded-full hover:scale-110"
+                src="{{ asset('upload/users/users.png') }}"alt="{{ $reply->name }}" style="border-radius: 50%">
+                </a>
+            @endif
 
         <div class="reply-content ml-4 w-11/12">
 

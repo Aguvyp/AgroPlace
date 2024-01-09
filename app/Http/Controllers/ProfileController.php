@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
@@ -34,7 +35,8 @@ class ProfileController extends Controller
         'locality' => ['max:50'],
         'province' => ['max:50'],
         'country' => ['max:30'],
-        'phone' => ['regex:/^[0-9+().\/\s-]+$/', 'min:11']
+        'phone' => ['regex:/^[0-9+().\/\s-]+$/', 'min:11'],
+        'image' => []
     ]);
 
     $user->fill($validated); // Llenar los datos validados en la instancia del usuario
@@ -42,6 +44,16 @@ class ProfileController extends Controller
     if ($user->isDirty('email')) {
         $user->email_verified_at = null;
     }
+
+    if($request->hasFile('image'))
+    {
+        File::delete(public_path('storage/' . $user->image));
+        $image = $request['image']->store('profiles');
+    }else{
+        $image = $user->image;
+    }
+
+    $user->image = $image;
 
     $user->save(); // Guardar el usuario
 
