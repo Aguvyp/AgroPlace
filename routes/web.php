@@ -17,8 +17,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 */
 
 Route::get('/', function () {
-    return redirect('/tweets');
-});
+    return view('dashboard');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return redirect('/tweets');

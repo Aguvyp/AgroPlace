@@ -1,9 +1,9 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <a href="{{ route('tweets') }}">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center" style="text-shadow: 2px 2px 4px rgba(160, 12, 228, 0.767);">
-                T A L K I N G
+        <a href="{{ route('home') }}">
+            <h2 class="font-semibold text-xl text-black leading-tight text-center" style="text-shadow: 2px 2px 4px rgba(37, 228, 12, 0.767);">
+                A  G  R  O  P  L  A  C  E
             </h2>
         </a>
     </x-slot>

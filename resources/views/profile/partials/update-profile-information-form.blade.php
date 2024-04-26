@@ -20,8 +20,8 @@
         <div>
             <x-input-label for="name" :value="__('Foto de perfil')" />
             @if ($user->image)
-                <div class="w-80 rounded-full">
-                    <img class="rounded-full mb-2 mt-2" src="{{asset('storage/' . $user->image) }}" alt="Foto de perfil actual">
+                <div class="w-52 p-4 rounded-full">
+                    <img class="rounded-full h-52 mb-2 mt-2" src="{{asset('storage/' . $user->image) }}" alt="Foto de perfil actual">
                 </div>
             @endif
             <input type="file" class="form-input-file" accept="image/*" id="image" name="image">
@@ -29,32 +29,32 @@
         </div>
         <div>
             <x-input-label for="name" :value="__('Nombre')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
         <div>
             <x-input-label for="nick" :value="__('Nickname')" />
-            <x-text-input id="nick" name="nick" type="text" class="mt-1 block w-full" :value="old('nick', $user->nick)" required autofocus autocomplete="nick" />
+            <x-text-input id="nick" name="nick" type="text" class="mt-1 block w-full" :value="old('nick', $user->nick)"  autofocus autocomplete="nick" />
             <x-input-error class="mt-2" :messages="$errors->get('nick')" />
         </div>
         <div>
             <x-input-label for="locality" :value="__('Localidad')" />
-            <x-text-input id="locality" name="locality" type="text" class="mt-1 block w-full" :value="old('locality', $user->locality)" required autofocus autocomplete="locality" />
+            <x-text-input id="locality" name="locality" type="text" class="mt-1 block w-full" :value="old('locality', $user->locality)"  autofocus autocomplete="locality" />
             <x-input-error class="mt-2" :messages="$errors->get('locality')" />
         </div>
         <div>
             <x-input-label for="province" :value="__('Provincia')" />
-            <x-text-input id="province" name="province" type="text" class="mt-1 block w-full" :value="old('province', $user->province)" required autofocus autocomplete="province" />
+            <x-text-input id="province" name="province" type="text" class="mt-1 block w-full" :value="old('province', $user->province)" autofocus autocomplete="province" />
             <x-input-error class="mt-2" :messages="$errors->get('province')" />
         </div>
         <div>
             <x-input-label for="country" :value="__('País')" />
-            <x-text-input id="country" name="country" type="text" class="mt-1 block w-full" :value="old('country', $user->country)" required autofocus autocomplete="country" />
+            <x-text-input id="country" name="country" type="text" class="mt-1 block w-full" :value="old('country', $user->country)"  autofocus autocomplete="country" />
             <x-input-error class="mt-2" :messages="$errors->get('country')" />
         </div>
         <div>
             <x-input-label for="phone" :value="__('Teléfono')" />
-            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autofocus autocomplete="phone" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)"  autofocus autocomplete="phone" />
             <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
 
@@ -63,7 +63,7 @@
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"  autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
